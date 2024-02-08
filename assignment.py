@@ -21,7 +21,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # %matplotlib inline
 import seaborn as sns
-import plotly.express as px
+#import plotly.express as px
 
 df1 = pd.read_csv("dataset.csv")
 df2 = pd.read_csv("symptom_severity.csv")
