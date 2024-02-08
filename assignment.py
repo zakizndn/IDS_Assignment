@@ -25,10 +25,9 @@ import streamlit as st
 import plotly.express as px
 
 df1 = pd.read_csv("dataset.csv")
-df2 = pd.read_csv("symptom_severity.csv")
-df3 = pd.read_csv("disease_description.csv")
-df4 = pd.read_csv("symptom_precaution.csv")
-
+df2 = pd.read_csv("disease_description.csv")
+df3 = pd.read_csv("symptom_precaution.csv")
+df4 = pd.read_csv("symptom_severity.csv")
 
 """## Exploratory Data Analysis"""
 
