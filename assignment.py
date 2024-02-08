@@ -224,11 +224,6 @@ providing a nuanced understanding of disease likelihoods in multi-symptomatic sc
 
 """#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
-import pandas as pd
-import streamlit as st
-
-# Assuming you have loaded your DataFrame df1 before this point
-
 # Find diseases where fatigue may or may not be a symptom
 all_diseases = df1['Disease'].unique()
 
@@ -253,23 +248,12 @@ for disease in all_diseases:
     elif fatigue_absent:
         df_not_present = pd.concat([df_not_present, pd.DataFrame({'Disease': [disease]})], ignore_index=True)
 
-# Calculate percentages
-total_diseases = len(all_diseases)
-percentage_present = len(df_present) / total_diseases * 100
-percentage_not_present = len(df_not_present) / total_diseases * 100
-percentage_depends = len(df_depends) / total_diseases * 100
+# Create a summary DataFrame
+summary_df = pd.DataFrame({
+    'Diseases with Fatigue Present': df_present['Disease'],
+    'Diseases with Fatigue Not Present': df_not_present['Disease'],
+    'Diseases where Fatigue Depends on the Situation': df_depends['Disease']
+})
 
-# Display tables using Streamlit
-st.write('###### Diseases with Fatigue Present:')
-st.table(df_present)
-
-st.write('###### Diseases with Fatigue Not Present:')
-st.table(df_not_present)
-
-st.write('###### Diseases where Fatigue Depends on the Situation:')
-st.table(df_depends)
-
-st.write(f'Percentage of Diseases with Fatigue Present: {percentage_present:.2f}%')
-st.write(f'Percentage of Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
-st.write(f'Percentage of Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
-
+# Display the summary table using Streamlit
+st.table(summary_df)
