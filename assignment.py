@@ -245,16 +245,16 @@ percentage_not_present = len(df_not_present) / total_diseases * 100
 percentage_depends = len(df_depends) / total_diseases * 100
 
 # Display tables using Streamlit
-st.subheader('###### Diseases with Fatigue Present:')
+st.write('Diseases with Fatigue Present:')
 st.table(df_present)
 
-st.subheader('###### Diseases with Fatigue Not Present:')
+st.write('Diseases with Fatigue Not Present:')
 st.table(df_not_present)
 
-st.subheader('###### Diseases where Fatigue Depends on the Situation:')
+st.write('Diseases where Fatigue Depends on the Situation:')
 st.table(df_depends)
 
-st.subheader(f'Percentage of Diseases with Fatigue Present: {percentage_present:.2f}%')
-st.subheader(f'Percentage of Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
-st.subheader(f'Percentage of Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
+st.write(f'Percentage of Diseases with Fatigue Present: {percentage_present:.2f}%')
+st.write(f'Percentage of Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
+st.write(f'Percentage of Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
 
