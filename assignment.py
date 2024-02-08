@@ -210,7 +210,7 @@ percentage_likelihood
 """
 ###### Finding
 
-If the first reported symptom is "abdominal pain," the dataset suggests varying likelihoods of different diseases 
+If the first reported symptom is "abdominal pain", the dataset suggests varying likelihoods of different diseases 
 associated with this symptom. Specifically, the likelihood of getting Hepatitis E is slightly higher than 
 other diseases, such as Alcoholic hepatitis, Chronic cholestasis, Hepatitis B, Hepatitis D, Jaundice, 
 Peptic ulcer disease, Typhoid, and Hepatitis A, all with a likelihood of approximately 11.05%.
