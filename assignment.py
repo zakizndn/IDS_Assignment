@@ -56,7 +56,7 @@ st.write(df1.sample(n=10))
 """###### 1.6 df1.describe()"""
 st.write(df1.describe())
 
-
+st.markdown("---") 
 
 """#### 2.0 Disease Description Dataset"""
 
@@ -72,6 +72,7 @@ st.write(df2.dtypes)
 """###### 2.3 df2"""
 st.write(df2)
 
+st.markdown("---") 
 
 """#### 3.0 Disease Precaution Dataset"""
 
@@ -90,7 +91,7 @@ st.write(df3)
 """###### 3.4 df3.describe()"""
 st.write(df3.describe())
 
-st.markdown("---") 
+st.markdown("<hr style='border: 10px solid #ddd;'>", unsafe_allow_html=True)
 
 """## Further EDA"""
 
@@ -127,6 +128,8 @@ all_symptoms['Percentage of Occurrence (%)'] = (all_symptoms['Frequency'] / tota
 all_symptoms.columns = ['Symptom', 'Occurrence', 'Percentage of Occurrence (%)']
 st.write(all_symptoms)
 
+st.markdown("---") 
+
 """#### 2. What is the most common precaution across the dataset for preventing the transmission of diseases?"""
 
 # Extract precaution columns from the DataFrame df3
@@ -159,6 +162,8 @@ all_precautions = precaution_counts.copy()
 all_precautions['Percentage of Occurrence (%)'] = (all_precautions['Frequency'] / total_precautions) * 100
 all_precautions.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
 st.write(all_precautions)
+
+st.markdown("---") 
 
 """#### 3. Is there a correlation between specific symptoms and the occurrence of a particular disease in the dataset?"""
 
@@ -222,7 +227,7 @@ For more comprehensive insights, further analysis can be conducted for each subs
 providing a nuanced understanding of disease likelihoods in multi-symptomatic scenarios. 
 """
 
-st.markdown("<hr style='border: 10px solid #ddd;'>", unsafe_allow_html=True)
+st.markdown("---") 
 
 """#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
