@@ -249,9 +249,9 @@ for disease in all_diseases:
         df_not_present = pd.concat([df_not_present, pd.DataFrame({'Disease': [disease]})], ignore_index=True)
 
 # Replace <NA> values with blank strings
-df_present['Disease'] = df_present['Disease'].fillna('')
-df_not_present['Disease'] = df_not_present['Disease'].fillna('')
-df_depends['Disease'] = df_depends['Disease'].fillna('')
+df_present['Disease'] = df_present['Disease'].fillna(' ')
+df_not_present['Disease'] = df_not_present['Disease'].fillna(' ')
+df_depends['Disease'] = df_depends['Disease'].fillna(' ')
 
 # Calculate percentages
 total_diseases = len(all_diseases)
@@ -268,7 +268,6 @@ summary_df = pd.DataFrame({
 
 # Display the summary table using Streamlit
 st.write(summary_df)
-st.write('###### Percentage of Diseases:')
-st.write(f'- Diseases with Fatigue Present: {percentage_present:.2f}%')
-st.write(f'- Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
-st.write(f'- Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
+st.write(f'Diseases with Fatigue Present: {percentage_present:.2f}%')
+st.write(f'Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
+st.write(f'Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
