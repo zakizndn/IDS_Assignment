@@ -271,3 +271,26 @@ st.write(summary_df)
 st.write(f'Diseases with Fatigue Present: {percentage_present:.2f}%')
 st.write(f'Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
 st.write(f'Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
+
+"""
+###### Finding
+While fatigue is a prevalent symptom in the dataset, its occurrence does not universally characterize all 
+diseases. The analysis reveals that:
+
+Diseases with Fatigue Present: 
+- Only 2.44% of diseases in the dataset consistently exhibit fatigue as a reported symptom.
+
+Diseases with Fatigue Not Present: 
+- A significant portion, 58.54%, shows no association with fatigue. 
+- These diseases are identified as having no reported instances of fatigue.
+
+Diseases where Fatigue Depends on the Situation: 
+- Approximately 39.02% of diseases fall into a category where the presence or absence of fatigue depends on 
+the specific situation. 
+- In these cases, the reported symptomatology may or may not include fatigue for the same diseases.
+
+This nuanced breakdown emphasizes that while fatigue is commonly reported, it is not a universal indicator 
+across all diseases. The 39.02% of cases where fatigue depends on the situation highlights the complexity of 
+symptomatology and the variability in reported symptoms for certain diseases. Understanding these variations is 
+crucial for accurate diagnosis and effective medical interventions.
+"""
