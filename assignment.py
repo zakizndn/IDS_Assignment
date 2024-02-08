@@ -92,7 +92,7 @@ st.write(df3.describe())
 
 st.markdown("---") 
 
-"""## The Question"""
+"""## Further EDA"""
 
 """#### 1. What is the most common symptom reported?"""
 
@@ -115,14 +115,13 @@ fig = px.bar(symptom_counts, x='Symptom', y='Frequency', title='Distribution of 
 fig.update_xaxes(type='category', tickangle=45)
 
 # Streamlit app
-st.title('Symptom Distribution Dashboard')
 st.plotly_chart(fig)
 
 # Display the total number of symptoms
 st.write(f'Total number of symptoms: {total_symptoms}')
 
 # Display all symptoms and their occurrence percentages
-st.write('All Symptoms:')
+st.write('Occurrences of All Symptoms:')
 all_symptoms = symptom_counts.copy()
 all_symptoms['Percentage of Occurrence (%)'] = (all_symptoms['Frequency'] / total_symptoms) * 100
 all_symptoms.columns = ['Symptom', 'Occurrence', 'Percentage of Occurrence (%)']
@@ -130,54 +129,63 @@ st.write(all_symptoms)
 
 """#### 2. What is the most common precaution across the dataset for preventing the transmission of diseases?"""
 
+# Extract symptom columns from the DataFrame
+symptom_columns = df1.iloc[:, 1:]
+
+# Get the frequency of each symptom
+symptom_counts = symptom_columns.stack().value_counts().reset_index()
+symptom_counts.columns = ['Symptom', 'Frequency']
+
+# Total number of symptoms
+total_symptoms = len(symptom_columns.stack())
+
+# Create an interactive bar chart with plotly for symptoms
+fig_symptoms = px.bar(symptom_counts, x='Symptom', y='Frequency', title='Distribution of Symptoms',
+                      labels={'Frequency': 'Frequency', 'Symptom': 'Symptoms'},
+                      width=3000, height=700)
+
+# Enable scroll bar for the x-axis
+fig_symptoms.update_xaxes(type='category', tickangle=45)
+
 # Extract precaution columns from the DataFrame
 precaution_columns = df4.iloc[:, 1:]
 
 # Get the frequency of each precaution
 precaution_counts = precaution_columns.stack().value_counts().reset_index()
-precaution_counts.columns = ['Precautions', 'Frequency']
-
-# Total number of precautions
-total_symptoms = len(precaution_columns.stack())
-
-# Create an interactive bar chart with plotly
-fig = px.bar(precaution_counts, x='Precautions', y='Frequency', title='Distribution of Precautions',
-             labels={'Frequency': 'Frequency', 'Precaution': 'Precaution'},
-             width=3000, height=700)
-
-# Enable scroll bar for the x-axis
-fig.update_xaxes(type='category', tickangle=45)
-
-# Show the plot
-fig.show()
-
-# Extract precaution columns from the DataFrame
-precaution_columns = df4.iloc[:, 1:]
-
-# Get the frequency of each sympprecautiontom
-precaution_counts = precaution_columns.stack().value_counts()
+precaution_counts.columns = ['Precaution', 'Frequency']
 
 # Total number of precautions
 total_precautions = len(precaution_columns.stack())
 
-# Get all precautions
-all_precautions = precaution_counts.reset_index()
-all_precautions.columns = ['Precaution', 'Occurrence']
+# Create an interactive bar chart with plotly for precautions
+fig_precautions = px.bar(precaution_counts, x='Precaution', y='Frequency', title='Distribution of Precautions',
+                         labels={'Frequency': 'Frequency', 'Precaution': 'Precautions'},
+                         width=3000, height=700)
 
-# Convert 'Occurrence' column to numeric and handle errors
-all_precautions['Occurrence'] = pd.to_numeric(all_precautions['Occurrence'], errors='coerce')
+# Enable scroll bar for the x-axis
+fig_precautions.update_xaxes(type='category', tickangle=45)
 
-# Remove rows with NaN values
-all_precautions = all_precautions.dropna()
+# Streamlit app
+st.title('Symptom and Precaution Distribution Dashboard')
 
-# Calculate the percentage
-all_precautions['Percentage of Occurrence (%)'] = (all_precautions['Occurrence'] / total_precautions) * 100
+# Display the chart for symptoms
+st.plotly_chart(fig_symptoms)
 
-# Set display options for pandas to show 2 decimal places
-pd.set_option('display.float_format', '{:.2f}'.format)
+# Display the total number of symptoms
+st.write(f'Total number of symptoms: {total_symptoms}')
 
-# Display all precautions
-all_precautions[['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']]
+# Display the chart for precautions
+st.plotly_chart(fig_precautions)
+
+# Display the total number of precautions
+st.write(f'Total number of precautions: {total_precautions}')
+
+# Display all precautions and their occurrence percentages
+st.write('All Precautions:')
+all_precautions = precaution_counts.copy()
+all_precautions['Percentage of Occurrence (%)'] = (all_precautions['Frequency'] / total_precautions) * 100
+all_precautions.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
+st.write(all_precautions)
 
 """#### 3. Is there a correlation between specific symptoms and the occurrence of a particular disease in the dataset?"""
 
