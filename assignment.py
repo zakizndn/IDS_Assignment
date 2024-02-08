@@ -121,7 +121,7 @@ st.plotly_chart(fig)
 st.write(f'Total number of occurrences: {total_symptoms}')
 
 # Display all symptoms and their occurrence percentages
-st.write('Occurrences of All Symptoms:')
+st.write('###### Occurrences of All Symptoms:')
 all_symptoms = symptom_counts.copy()
 all_symptoms['Percentage of Occurrence (%)'] = (all_symptoms['Frequency'] / total_symptoms) * 100
 all_symptoms.columns = ['Symptom', 'Occurrence', 'Percentage of Occurrence (%)']
@@ -154,7 +154,7 @@ st.plotly_chart(fig_precautions)
 st.write(f'Total number of occurrences: {total_precautions}')
 
 # Display all precautions and their occurrence percentages
-st.write('Occurrences of All Precautions:')
+st.write('###### Occurrences of All Precautions:')
 all_precautions = precaution_counts.copy()
 all_precautions['Percentage of Occurrence (%)'] = (all_precautions['Frequency'] / total_precautions) * 100
 all_precautions.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
@@ -207,6 +207,21 @@ percentage_likelihood.columns = ['Symptom', 'Disease', 'Likelihood of getting th
 
 percentage_likelihood
 
+"""
+###### Finding
+
+If the first reported symptom is "abdominal pain," the dataset suggests varying likelihoods of different diseases 
+associated with this symptom. Specifically, the likelihood of getting Hepatitis E is slightly higher than 
+other diseases, such as Alcoholic hepatitis, Chronic cholestasis, Hepatitis B, Hepatitis D, Jaundice, 
+Peptic ulcer disease, Typhoid, and Hepatitis A, all with a likelihood of approximately 11.05%.
+
+It's important to note that this analysis focuses solely on cases where only the first reported symptom is 
+considered and does not consider additional symptoms reported later in the diagnostic process. 
+
+For more comprehensive insights, further analysis can be conducted for each subsequent reported symptom, 
+providing a nuanced understanding of disease likelihoods in multi-symptomatic scenarios. 
+"""
+
 """#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
 import pandas as pd
@@ -245,13 +260,13 @@ percentage_not_present = len(df_not_present) / total_diseases * 100
 percentage_depends = len(df_depends) / total_diseases * 100
 
 # Display tables using Streamlit
-st.write('Diseases with Fatigue Present:')
+st.write('###### Diseases with Fatigue Present:')
 st.table(df_present)
 
-st.write('Diseases with Fatigue Not Present:')
+st.write('###### Diseases with Fatigue Not Present:')
 st.table(df_not_present)
 
-st.write('Diseases where Fatigue Depends on the Situation:')
+st.write('###### Diseases where Fatigue Depends on the Situation:')
 st.table(df_depends)
 
 st.write(f'Percentage of Diseases with Fatigue Present: {percentage_present:.2f}%')
