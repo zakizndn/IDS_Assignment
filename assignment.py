@@ -222,6 +222,8 @@ For more comprehensive insights, further analysis can be conducted for each subs
 providing a nuanced understanding of disease likelihoods in multi-symptomatic scenarios. 
 """
 
+st.markdown("<hr style='border: 10px solid #ddd;'>", unsafe_allow_html=True)
+
 """#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
 # Find diseases where fatigue may or may not be a symptom
@@ -285,8 +287,7 @@ Diseases with Fatigue Not Present:
 - These diseases are identified as having no reported instances of fatigue.
 
 Diseases where Fatigue Depends on the Situation: 
-- Approximately 39.02% of diseases fall into a category where the presence or absence of fatigue depends on 
-the specific situation. 
+- Approximately 39.02% of diseases fall into a category where the presence or absence of fatigue depends on the specific situation. 
 - In these cases, the reported symptomatology may or may not include fatigue for the same diseases.
 
 This nuanced breakdown emphasizes that while fatigue is commonly reported, it is not a universal indicator 
