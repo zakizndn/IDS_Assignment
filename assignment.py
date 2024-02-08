@@ -31,18 +31,12 @@ df4 = pd.read_csv("symptom_precaution.csv")
 
 
 """##Exploratory Data Analysis"""
-"""
-df1 = pd.read_csv("dataset.csv")
-df2 = pd.read_csv("disease_description.csv")
-df3 = pd.read_csv("symptom_precaution.csv")
-df4 = pd.read_csv("symptom_severity.csv")
-"""
 
 """####1. Primary Dataset"""
 
 """######df1.shape"""
-st.write('Row =', df.shape[0])
-st.write('Column =', df.shape[1])
+st.write('Row =', df1.shape[0])
+st.write('Column =', df1.shape[1])
 """The dataset has 4920 rows and 18 columns."""
 
 """######df1.dtypes"""
