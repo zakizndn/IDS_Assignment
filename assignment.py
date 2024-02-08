@@ -259,15 +259,16 @@ percentage_present = len(df_present) / total_diseases * 100
 percentage_not_present = len(df_not_present) / total_diseases * 100
 percentage_depends = len(df_depends) / total_diseases * 100
 
-# Create a summary DataFrame with percentages
+# Create a summary DataFrame
 summary_df = pd.DataFrame({
     'Diseases with Fatigue Present': df_present['Disease'],
-    'Percentage of Diseases with Fatigue Present': [f"{percentage_present:.2f}%"] * len(df_present),
     'Diseases with Fatigue Not Present': df_not_present['Disease'],
-    'Percentage of Diseases with Fatigue Not Present': [f"{percentage_not_present:.2f}%"] * len(df_not_present),
-    'Diseases where Fatigue Depends on the Situation': df_depends['Disease'],
-    'Percentage of Diseases where Fatigue Depends on the Situation': [f"{percentage_depends:.2f}%"] * len(df_depends)
+    'Diseases where Fatigue Depends on the Situation': df_depends['Disease']
 })
 
 # Display the summary table using Streamlit
-st.table(summary_df)
+st.write(summary_df)
+st.write('###### Percentage of Diseases:')
+st.write(f'- Diseases with Fatigue Present: {percentage_present:.2f}%')
+st.write(f'- Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
+st.write(f'- Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
