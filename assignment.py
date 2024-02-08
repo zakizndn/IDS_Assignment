@@ -30,72 +30,72 @@ df3 = pd.read_csv("disease_description.csv")
 df4 = pd.read_csv("symptom_precaution.csv")
 
 
-"""##Exploratory Data Analysis"""
+"""## Exploratory Data Analysis"""
 
-"""####1. Primary Dataset"""
+"""#### 1. Primary Dataset"""
 
-"""######df1.shape"""
+"""###### df1.shape"""
 st.write('Row =', df1.shape[0])
 st.write('Column =', df1.shape[1])
 """The dataset has 4920 rows and 18 columns."""
 
-"""######df1.dtypes"""
+"""###### df1.dtypes"""
 st.write(df1.dtypes)
 """This method returns a series with the data type of each column. All of the attributes are categorical data."""
 
-"""######df1.isnull().sum()"""
+"""###### df1.isnull().sum()"""
 st.write(df1.isnull().sum())
 """This method gives the total count of null for each column (attribute)."""
 
-"""######df1"""
+"""###### df1"""
 st.write(df1)
 
-"""####df1.sample(n = 10)"""
+"""###### df1.sample(n = 10)"""
 st.write(df1.sample(n=10))
 """This method returns a random sample of 10 rows (n = 10) from the dataset."""
 
-"""######df1.describe()"""
+"""###### df1.describe()"""
 st.write(df1.describe())
 
 
 
-"""####2. Disease Description Dataset"""
+"""#### 2. Disease Description Dataset"""
 
-"""######df2.shape"""
+"""###### df2.shape"""
 st.write('Row =', df2.shape[0])
 st.write('Column =', df2.shape[1])
 """The dataset has 41 rows and 2 columns."""
 
-"""######df2.types"""
+"""###### df2.types"""
 st.write(df2.dtypes)
 """This method returns a series with the data type of each column. All of the attributes are categorical data."""
 
-"""######df2"""
+"""###### df2"""
 st.write(df2)
 
 
-"""####3. Symptom Precaution Dataset"""
+"""#### 3. Symptom Precaution Dataset"""
 
-"""######df3.shape"""
+"""###### df3.shape"""
 st.write('Row =', df3.shape[0])
 st.write('Column =', df3.shape[1])
 """The dataset has 41 rows and 5 columns."""
 
-"""######df3.types"""
+"""###### df3.types"""
 st.write(df3.dtypes)
 """This method returns a series with the data type of each column. All of the attributes are categorical data."""
 
-"""######df3"""
+"""###### df3"""
 st.write(df3)
 
-"""######df3.describe()"""
+"""###### df3.describe()"""
 st.write(df3.describe())
 
 st.markdown("---") 
 
-"""##The Question"""
+"""## The Question"""
 
-"""####1. What is the most common symptom reported?"""
+"""#### 1. What is the most common symptom reported?"""
 
 # Extract symptom columns from the DataFrame
 symptom_columns = df1.iloc[:, 1:]
@@ -129,7 +129,7 @@ all_symptoms['Percentage of Occurrence (%)'] = (all_symptoms['Frequency'] / tota
 all_symptoms.columns = ['Symptom', 'Occurrence', 'Percentage of Occurrence (%)']
 st.write(all_symptoms)
 
-"""### 2. What is the most common precaution across the dataset for preventing the transmission of diseases?"""
+"""#### 2. What is the most common precaution across the dataset for preventing the transmission of diseases?"""
 
 # Extract precaution columns from the DataFrame
 precaution_columns = df4.iloc[:, 1:]
@@ -180,7 +180,7 @@ pd.set_option('display.float_format', '{:.2f}'.format)
 # Display all precautions
 all_precautions[['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']]
 
-"""####3. Is there a correlation between specific symptoms and the occurrence of a particular disease in the dataset?"""
+"""#### 3. Is there a correlation between specific symptoms and the occurrence of a particular disease in the dataset?"""
 
 # Extract symptom columns from the DataFrame
 symptom_columns = df1.iloc[:, 1:]
@@ -227,7 +227,7 @@ percentage_likelihood.columns = ['Symptom', 'Disease', 'Likelihood of getting th
 
 percentage_likelihood
 
-"""####4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
+"""#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
 from tabulate import tabulate
 
