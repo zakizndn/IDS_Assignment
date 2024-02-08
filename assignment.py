@@ -73,7 +73,7 @@ st.write(df2.dtypes)
 st.write(df2)
 
 
-"""#### 3.0 Symptom Precaution Dataset"""
+"""#### 3.0 Disease Precaution Dataset"""
 
 """###### 3.1 df3.shape"""
 st.write('Row =', df3.shape[0])
