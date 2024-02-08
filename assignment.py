@@ -209,30 +209,52 @@ percentage_likelihood
 
 """#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
-# Melt the DataFrame to have a 'Disease' column and a 'Symptom' column
-melted_df = pd.melt(df1, id_vars=['Disease'], value_vars=df1.columns[1:], var_name='Symptom', value_name='Present')
+import pandas as pd
+import streamlit as st
 
-# Filter rows where the symptom is 'fatigue'
-fatigue_df = melted_df[melted_df['Symptom'] == 'fatigue']
+# Assuming you have loaded your DataFrame df1 before this point
 
-# Categorize diseases based on fatigue presence or absence
-df_present = fatigue_df[fatigue_df['Present'] == 1]
-df_not_present = fatigue_df[fatigue_df['Present'] == 0]
+# Find diseases where fatigue may or may not be a symptom
+all_diseases = df1['Disease'].unique()
+
+# Create DataFrames to store diseases with fatigue present, not present, or depends
+df_present = pd.DataFrame(columns=['Disease'])
+df_not_present = pd.DataFrame(columns=['Disease'])
+df_depends = pd.DataFrame(columns=['Disease'])
+
+# Iterate through diseases
+for disease in all_diseases:
+    # Check if there is at least one row for the disease where 'fatigue' is present in any symptom column
+    fatigue_present = any(df1[df1['Disease'] == disease].apply(lambda row: 'fatigue' in ' '.join(row.dropna()), axis=1))
+
+    # Check if there is at least one row for the disease where 'fatigue' is absent in all symptom columns
+    fatigue_absent = any(df1[df1['Disease'] == disease].apply(lambda row: 'fatigue' not in ' '.join(row.dropna()), axis=1))
+
+    # Categorize diseases based on fatigue presence or absence
+    if fatigue_present and fatigue_absent:
+        df_depends = pd.concat([df_depends, pd.DataFrame({'Disease': [disease]})], ignore_index=True)
+    elif fatigue_present:
+        df_present = pd.concat([df_present, pd.DataFrame({'Disease': [disease]})], ignore_index=True)
+    elif fatigue_absent:
+        df_not_present = pd.concat([df_not_present, pd.DataFrame({'Disease': [disease]})], ignore_index=True)
 
 # Calculate percentages
-total_diseases = df1['Disease'].nunique()
+total_diseases = len(all_diseases)
 percentage_present = len(df_present) / total_diseases * 100
 percentage_not_present = len(df_not_present) / total_diseases * 100
-
-# Streamlit app
-st.title('Diseases and Fatigue')
+percentage_depends = len(df_depends) / total_diseases * 100
 
 # Display tables using Streamlit
-st.subheader('Diseases with Fatigue Present:')
-st.table(df_present[['Disease', 'Symptom']])
+st.subheader('###### Diseases with Fatigue Present:')
+st.table(df_present)
 
-st.subheader('Diseases with Fatigue Not Present:')
-st.table(df_not_present[['Disease', 'Symptom']])
+st.subheader('###### Diseases with Fatigue Not Present:')
+st.table(df_not_present)
+
+st.subheader('###### Diseases where Fatigue Depends on the Situation:')
+st.table(df_depends)
 
 st.subheader(f'Percentage of Diseases with Fatigue Present: {percentage_present:.2f}%')
 st.subheader(f'Percentage of Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
+st.subheader(f'Percentage of Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
+
