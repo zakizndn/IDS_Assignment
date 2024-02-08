@@ -147,17 +147,14 @@ fig_precautions = px.bar(precaution_counts, x='Precautions', y='Frequency', titl
 # Enable scroll bar for the x-axis
 fig_precautions.update_xaxes(type='category', tickangle=45)
 
-# Streamlit app
-st.title('Precaution Distribution Dashboard')
-
 # Display the chart for precautions
 st.plotly_chart(fig_precautions)
 
 # Display the total number of precautions
-st.write(f'Total number of precautions: {total_precautions}')
+st.write(f'Total number of occurrences: {total_precautions}')
 
 # Display all precautions and their occurrence percentages
-st.write('All Precautions:')
+st.write('Occurrences of All Precautions:')
 all_precautions = precaution_counts.copy()
 all_precautions['Percentage of Occurrence (%)'] = (all_precautions['Frequency'] / total_precautions) * 100
 all_precautions.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
@@ -212,8 +209,6 @@ percentage_likelihood
 
 """#### 4. Given the higher occurrence of the fatigue symptom, can we infer that fatigue may serve as a potential common indicator in a diverse range of diseases?"""
 
-from tabulate import tabulate
-
 # Find diseases where fatigue may or may not be a symptom
 all_diseases = df1['Disease'].unique()
 
@@ -244,17 +239,19 @@ percentage_present = len(df_present) / total_diseases * 100
 percentage_not_present = len(df_not_present) / total_diseases * 100
 percentage_depends = len(df_depends) / total_diseases * 100
 
-# Display the resulting table
-table_present = tabulate(df_present, headers='keys', tablefmt='pretty', showindex=False)
-table_not_present = tabulate(df_not_present, headers='keys', tablefmt='pretty', showindex=False)
-table_depends = tabulate(df_depends, headers='keys', tablefmt='pretty', showindex=False)
+# Streamlit app
+st.title('Diseases and Fatigue')
 
-print("\nDiseases with Fatigue Present:")
-print(table_present)
-print("\nDiseases with Fatigue Not Present:")
-print(table_not_present)
-print("\nDiseases where Fatigue Depends on the Situation:")
-print(table_depends)
-print("\nPercentage of Diseases with Fatigue Present: {:.2f}%".format(percentage_present))
-print("Percentage of Diseases with Fatigue Not Present: {:.2f}%".format(percentage_not_present))
-print("Percentage of Diseases where Fatigue Depends on the Situation: {:.2f}%".format(percentage_depends))
+# Display tables using Streamlit
+st.subheader('Diseases with Fatigue Present:')
+st.table(df_present)
+
+st.subheader('Diseases with Fatigue Not Present:')
+st.table(df_not_present)
+
+st.subheader('Diseases where Fatigue Depends on the Situation:')
+st.table(df_depends)
+
+st.subheader(f'Percentage of Diseases with Fatigue Present: {percentage_present:.2f}%')
+st.subheader(f'Percentage of Diseases with Fatigue Not Present: {percentage_not_present:.2f}%')
+st.subheader(f'Percentage of Diseases where Fatigue Depends on the Situation: {percentage_depends:.2f}%')
