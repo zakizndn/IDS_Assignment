@@ -248,10 +248,10 @@ for disease in all_diseases:
     elif fatigue_absent:
         df_not_present = pd.concat([df_not_present, pd.DataFrame({'Disease': [disease]})], ignore_index=True)
 
-# Replace <NA> values with blank strings
-df_present['Disease'] = df_present['Disease'].fillna(' ')
-df_not_present['Disease'] = df_not_present['Disease'].fillna(' ')
-df_depends['Disease'] = df_depends['Disease'].fillna(' ')
+# Replace missing values with blank strings
+df_present['Disease'] = df_present['Disease'].replace({pd.NA: ''})
+df_not_present['Disease'] = df_not_present['Disease'].replace({pd.NA: ''})
+df_depends['Disease'] = df_depends['Disease'].replace({pd.NA: ''})
 
 # Calculate percentages
 total_diseases = len(all_diseases)
