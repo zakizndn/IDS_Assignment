@@ -31,64 +31,64 @@ df4 = pd.read_csv("symptom_severity.csv")
 
 """## Exploratory Data Analysis"""
 
-"""#### 1.0 Primary Dataset"""
+"""#### Primary Dataset"""
 
-"""###### 1.1 df1.shape"""
+"""###### 1) df1.shape"""
 st.write('Row =', df1.shape[0])
 st.write('Column =', df1.shape[1])
 """The dataset has 4920 rows and 18 columns."""
 
-"""###### 1.2 df1.dtypes"""
+"""###### 2) df1.dtypes"""
 st.write(df1.dtypes)
 """This method returns a series with the data type of each column. All of the attributes are categorical data."""
 
-"""###### 1.3 df1.isnull().sum()"""
+"""###### 3) df1.isnull().sum()"""
 st.write(df1.isnull().sum())
 """This method gives the total count of null for each column (attribute)."""
 
-"""###### 1.4 df1"""
+"""###### 4) df1"""
 st.write(df1)
 
-"""###### 1.5 df1.sample(n = 10)"""
+"""###### 5) df1.sample(n = 10)"""
 st.write(df1.sample(n=10))
 """This method returns a random sample of 10 rows (n = 10) from the dataset."""
 
-"""###### 1.6 df1.describe()"""
+"""###### 6) df1.describe()"""
 st.write(df1.describe())
 
 st.markdown("---") 
 
-"""#### 2.0 Disease Description Dataset"""
+"""#### Disease Description Dataset"""
 
-"""###### 2.1 df2.shape"""
+"""###### 1) df2.shape"""
 st.write('Row =', df2.shape[0])
 st.write('Column =', df2.shape[1])
 """The dataset has 41 rows and 2 columns."""
 
-"""###### 2.2 df2.types"""
+"""###### 2) df2.types"""
 st.write(df2.dtypes)
 """This method returns a series with the data type of each column. All of the attributes are categorical data."""
 
-"""###### 2.3 df2"""
+"""###### 3) df2"""
 st.write(df2)
 
 st.markdown("---") 
 
-"""#### 3.0 Disease Precaution Dataset"""
+"""#### Disease Precaution Dataset"""
 
-"""###### 3.1 df3.shape"""
+"""###### 1) df3.shape"""
 st.write('Row =', df3.shape[0])
 st.write('Column =', df3.shape[1])
 """The dataset has 41 rows and 5 columns."""
 
-"""###### 3.2 df3.types"""
+"""###### 2) df3.types"""
 st.write(df3.dtypes)
 """This method returns a series with the data type of each column. All of the attributes are categorical data."""
 
-"""###### 3.3 df3"""
+"""###### 3) df3"""
 st.write(df3)
 
-"""###### 3.4 df3.describe()"""
+"""###### 4) df3.describe()"""
 st.write(df3.describe())
 
 st.markdown("<hr style='border: 10px solid #ddd;'>", unsafe_allow_html=True)
