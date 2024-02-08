@@ -129,70 +129,39 @@ st.write(all_symptoms)
 
 """#### 2. What is the most common precaution across the dataset for preventing the transmission of diseases?"""
 
-# Extract precaution columns from the DataFrame df2
-precaution_columns_1 = df2.iloc[:, 1:]
+# Extract precaution columns from the DataFrame df3
+precaution_columns = df3.iloc[:, 1:]
 
 # Get the frequency of each precaution
-precaution_counts_1 = precaution_columns_1.stack().value_counts().reset_index()
-precaution_counts_1.columns = ['Precautions', 'Frequency']
+precaution_counts = precaution_columns.stack().value_counts().reset_index()
+precaution_counts.columns = ['Precautions', 'Frequency']
 
 # Total number of precautions
-total_precautions_1 = len(precaution_columns_1.stack())
+total_precautions = len(precaution_columns.stack())
 
-# Create an interactive bar chart with plotly for the first set of precautions
-fig_precautions_1 = px.bar(precaution_counts_1, x='Precautions', y='Frequency', title='Distribution of Precautions (Set 1)',
-                           labels={'Frequency': 'Frequency', 'Precaution': 'Precaution'},
-                           width=3000, height=700)
-
-# Enable scroll bar for the x-axis
-fig_precautions_1.update_xaxes(type='category', tickangle=45)
-
-# Extract precaution columns from the DataFrame df4
-precaution_columns_2 = df4.iloc[:, 1:]
-
-# Get the frequency of each precaution
-precaution_counts_2 = precaution_columns_2.stack().value_counts().reset_index()
-precaution_counts_2.columns = ['Precautions', 'Frequency']
-
-# Total number of precautions
-total_precautions_2 = len(precaution_columns_2.stack())
-
-# Create an interactive bar chart with plotly for the second set of precautions
-fig_precautions_2 = px.bar(precaution_counts_2, x='Precautions', y='Frequency', title='Distribution of Precautions (Set 2)',
-                           labels={'Frequency': 'Frequency', 'Precaution': 'Precaution'},
-                           width=3000, height=700)
+# Create an interactive bar chart with plotly for precautions
+fig_precautions = px.bar(precaution_counts, x='Precautions', y='Frequency', title='Distribution of Precautions',
+                         labels={'Frequency': 'Frequency', 'Precaution': 'Precautions'},
+                         width=3000, height=700)
 
 # Enable scroll bar for the x-axis
-fig_precautions_2.update_xaxes(type='category', tickangle=45)
+fig_precautions.update_xaxes(type='category', tickangle=45)
 
 # Streamlit app
 st.title('Precaution Distribution Dashboard')
 
-# Display the chart for the first set of precautions
-st.plotly_chart(fig_precautions_1)
+# Display the chart for precautions
+st.plotly_chart(fig_precautions)
 
-# Display the total number of precautions for the first set
-st.write(f'Total number of precautions (Set 1): {total_precautions_1}')
+# Display the total number of precautions
+st.write(f'Total number of precautions: {total_precautions}')
 
-# Display the chart for the second set of precautions
-st.plotly_chart(fig_precautions_2)
-
-# Display the total number of precautions for the second set
-st.write(f'Total number of precautions (Set 2): {total_precautions_2}')
-
-# Display all precautions and their occurrence percentages for the first set
-st.write('All Precautions (Set 1):')
-all_precautions_1 = precaution_counts_1.copy()
-all_precautions_1['Percentage of Occurrence (%)'] = (all_precautions_1['Frequency'] / total_precautions_1) * 100
-all_precautions_1.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
-st.write(all_precautions_1)
-
-# Display all precautions and their occurrence percentages for the second set
-st.write('All Precautions (Set 2):')
-all_precautions_2 = precaution_counts_2.copy()
-all_precautions_2['Percentage of Occurrence (%)'] = (all_precautions_2['Frequency'] / total_precautions_2) * 100
-all_precautions_2.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
-st.write(all_precautions_2)
+# Display all precautions and their occurrence percentages
+st.write('All Precautions:')
+all_precautions = precaution_counts.copy()
+all_precautions['Percentage of Occurrence (%)'] = (all_precautions['Frequency'] / total_precautions) * 100
+all_precautions.columns = ['Precaution', 'Occurrence', 'Percentage of Occurrence (%)']
+st.write(all_precautions)
 
 """#### 3. Is there a correlation between specific symptoms and the occurrence of a particular disease in the dataset?"""
 
