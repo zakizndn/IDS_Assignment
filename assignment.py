@@ -130,7 +130,7 @@ st.write(all_symptoms)
 
 st.markdown("---") 
 
-"""#### 2. What is the most common precaution across the dataset for preventing the transmission of diseases?"""
+"""#### 2. What is the most common precaution across the dataset?"""
 
 # Extract precaution columns from the DataFrame df3
 precaution_columns = df3.iloc[:, 1:]
